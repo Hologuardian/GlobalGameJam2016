@@ -45,11 +45,11 @@ public class MainCamera : MonoBehaviour {
         // rotation
         if(Input.GetKey(KeyCode.Q))
         {
-            mainCamera.transform.RotateAround(target.position, Vector3.up, -rotateSpeed * Time.deltaTime);           
+            transform.RotateAround(Vector3.up, -rotateSpeed * Time.deltaTime);           
         }
         if(Input.GetKey(KeyCode.E))
         {
-            mainCamera.transform.RotateAround(target.position, Vector3.up, rotateSpeed * Time.deltaTime);
+            transform.RotateAround(Vector3.up, rotateSpeed * Time.deltaTime);
         }
 
         // zoom
