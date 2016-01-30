@@ -1041,12 +1041,12 @@ MonoBehaviour:
     name: Torch
   - component: {fileID: 114616}
     name: Virginhood
-  culty: 100
-  faithy: 26
-  mourny: -57
-  farmy: 24
-  socialy: -100
-  wandery: 100
+  culty: 0
+  faithy: 0
+  mourny: 0
+  farmy: 0
+  socialy: 0
+  wandery: 0
   navMe: {fileID: 19505160}
 --- !u!195 &19505160
 NavMeshAgent:
