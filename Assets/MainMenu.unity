@@ -25,7 +25,11 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
+<<<<<<< HEAD
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+=======
+  m_SkyboxMaterial: {fileID: 2100000, guid: 05ecc9a5cc385b24d814fa2a048abde8, type: 2}
+>>>>>>> origin/master
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -36,7 +40,11 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
+<<<<<<< HEAD
   m_Sun: {fileID: 0}
+=======
+  m_Sun: {fileID: 1412842239}
+>>>>>>> origin/master
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -85,13 +93,18 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1 &307841476
+=======
+--- !u!1 &1412842238
+>>>>>>> origin/master
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
+<<<<<<< HEAD
   - 4: {fileID: 307841481}
   - 20: {fileID: 307841480}
   - 92: {fileID: 307841479}
@@ -180,6 +193,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 354982591}
   - 108: {fileID: 354982590}
+=======
+  - 4: {fileID: 1412842240}
+  - 108: {fileID: 1412842239}
+>>>>>>> origin/master
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -187,12 +204,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!108 &354982590
+=======
+--- !u!108 &1412842239
+>>>>>>> origin/master
 Light:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 354982589}
+=======
+  m_GameObject: {fileID: 1412842238}
+>>>>>>> origin/master
   m_Enabled: 1
   serializedVersion: 6
   m_Type: 1
@@ -220,11 +245,16 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+<<<<<<< HEAD
 --- !u!4 &354982591
+=======
+--- !u!4 &1412842240
+>>>>>>> origin/master
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 354982589}
   m_LocalRotation: {x: 0.40821794, y: -0.23456973, z: 0.109381676, w: 0.87542605}
   m_LocalPosition: {x: 0, y: 3, z: 0}
@@ -233,12 +263,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
 --- !u!1 &507942228
+=======
+  m_GameObject: {fileID: 1412842238}
+  m_LocalRotation: {x: 0.9237739, y: 0.014639744, z: -0.035495125, w: 0.3810087}
+  m_LocalPosition: {x: 75.38, y: 167.49, z: -146.12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+--- !u!1 &1766624669
+>>>>>>> origin/master
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
+<<<<<<< HEAD
   - 224: {fileID: 507942232}
   - 223: {fileID: 507942231}
   - 114: {fileID: 507942230}
@@ -247,10 +288,22 @@ GameObject:
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
+=======
+  - 4: {fileID: 1766624674}
+  - 20: {fileID: 1766624673}
+  - 92: {fileID: 1766624672}
+  - 124: {fileID: 1766624671}
+  - 81: {fileID: 1766624670}
+  - 114: {fileID: 1766624675}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+>>>>>>> origin/master
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!114 &507942229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -574,10 +627,69 @@ MonoBehaviour:
   m_sendNavigationEvents: 1
   m_DragThreshold: 5
 --- !u!4 &1424059363
+=======
+--- !u!81 &1766624670
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1766624669}
+  m_Enabled: 1
+--- !u!124 &1766624671
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1766624669}
+  m_Enabled: 1
+--- !u!92 &1766624672
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1766624669}
+  m_Enabled: 1
+--- !u!20 &1766624673
+Camera:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1766624669}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+  m_StereoMirrorMode: 0
+--- !u!4 &1766624674
+>>>>>>> origin/master
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1424059360}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -763,10 +875,21 @@ MonoBehaviour:
   m_EffectDistance: {x: 1.53, y: 2.14}
   m_UseGraphicAlpha: 1
 --- !u!114 &1827192378
+=======
+  m_GameObject: {fileID: 1766624669}
+  m_LocalRotation: {x: 0.2588187, y: 0, z: 0, w: -0.96592593}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &1766624675
+>>>>>>> origin/master
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1827192373}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -814,3 +937,11 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+=======
+  m_GameObject: {fileID: 1766624669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac438504e95011f41bd4f86a72928739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+>>>>>>> origin/master
