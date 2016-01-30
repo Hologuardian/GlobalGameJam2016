@@ -1,0 +1,143 @@
+fileFormatVersion: 2
+guid: 54d5b41906146f24697215da9e85c749
+timeCreated: 1454181929
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: bewbs
+    100002: body
+    100004: //RootNode
+    100006: cultistHood
+    100008: fapperLeft
+    100010: fapperRight
+    100012: hair
+    100014: head
+    100016: mask
+    100018: PriestHair
+    100020: priestRobe
+    100022: shank
+    100024: sickle
+    100026: skirt
+    100028: torch
+    400000: bewbs
+    400002: body
+    400004: //RootNode
+    400006: cultistHood
+    400008: fapperLeft
+    400010: fapperRight
+    400012: hair
+    400014: head
+    400016: mask
+    400018: PriestHair
+    400020: priestRobe
+    400022: shank
+    400024: sickle
+    400026: skirt
+    400028: torch
+    2300000: bewbs
+    2300002: body
+    2300004: cultistHood
+    2300006: fapperLeft
+    2300008: fapperRight
+    2300010: hair
+    2300012: head
+    2300014: mask
+    2300016: PriestHair
+    2300018: priestRobe
+    2300020: shank
+    2300022: sickle
+    2300024: skirt
+    2300026: torch
+    3300000: bewbs
+    3300002: body
+    3300004: cultistHood
+    3300006: fapperLeft
+    3300008: fapperRight
+    3300010: hair
+    3300012: head
+    3300014: mask
+    3300016: PriestHair
+    3300018: priestRobe
+    3300020: shank
+    3300022: sickle
+    3300024: skirt
+    3300026: torch
+    4300000: bewbs
+    4300002: body
+    4300004: cultistHood
+    4300006: fapperLeft
+    4300008: fapperRight
+    4300010: hair
+    4300012: head
+    4300014: mask
+    4300016: PriestHair
+    4300018: priestRobe
+    4300020: shank
+    4300022: sickle
+    4300024: skirt
+    4300026: torch
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
