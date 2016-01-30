@@ -30,7 +30,7 @@ public class Node
 
 public class AIManager : MonoBehaviour
 {
-    public static ArrayList nodes;
+    public static ArrayList nodes = new ArrayList();
 
     // Use this for initialization
     void Start()
