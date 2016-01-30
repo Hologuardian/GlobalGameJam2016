@@ -83,6 +83,8 @@ public class EntityBehaviour : MonoBehaviour
 
         if (goalTimer > goalCondition)
         {
+            CreateAsRandom();
+
             isDay = !isDay;
             SetTarget();
             goalTimer = 0;
@@ -553,6 +555,8 @@ public class EntityBehaviour : MonoBehaviour
             role = "Narmy";
             // Narmy
         }
+
+        Debug.Log(role);
     }
 
     void SetComponentVisibility(bool state, string name)
@@ -567,24 +571,16 @@ public class EntityBehaviour : MonoBehaviour
         }
     }
 
-    public string GetName()
+    /// <summary>
+    /// Call this when you are spawning a sim you want to have assigned a random role, that is not religious
+    /// </summary>
+    public void CreateAsRandom()
     {
-        return name;
-    }
+        farmy = UnityEngine.Random.Range(-100, 100);
+        socialy = UnityEngine.Random.Range(-100, 100);
+        wandery = UnityEngine.Random.Range(-100, 100);
 
-    public bool GetSex()
-    {
-        return sex;
-    }
-
-    public string GetGender()
-    {
-        return gender;
-    }
-
-    public void SetCultyness(float cultyness)
-    {
-        culty = cultyness;
-        UpdateNodes();
+        UpdateRole();
+        SetAppearance();
     }
 }
