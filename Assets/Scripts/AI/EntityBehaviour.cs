@@ -83,8 +83,6 @@ public class EntityBehaviour : MonoBehaviour
 
         if (goalTimer > goalCondition)
         {
-            CreateAsRandom();
-
             isDay = !isDay;
             SetTarget();
             goalTimer = 0;
