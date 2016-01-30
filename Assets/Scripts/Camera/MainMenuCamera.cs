@@ -15,7 +15,7 @@ public class MainMenuCamera : MonoBehaviour {
 	void Update () {
         transform.rotation = Quaternion.Euler(330.0f, rotationY, 0.0f);
 
-        rotationY += 0.15f;
+        rotationY += 0.5f;
 
         if(rotationY == 360.0f)
         {
