@@ -3,11 +3,11 @@ using System.Collections;
 
 public static class Faith
 {
-    private static float currentFaith = 75;
+    private static float currentFaith = 500;
     public static float CurrentFaith 
     {
-        get { Debug.Log(currentFaith); return currentFaith; }
-        set { Debug.Log(currentFaith); currentFaith = value; } 
+        get { return currentFaith; }
+        set { currentFaith = value; } 
     }
     public static float MaxFaith = 1000;
 

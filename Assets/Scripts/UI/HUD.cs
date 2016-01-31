@@ -33,16 +33,27 @@ public class HUD : MonoBehaviour
                 Physics.Raycast(ray, out hit);
                 if (hit.collider.gameObject.tag == "Entity")
                 {
-                    if (myCursor == Cursor.Cultify && Faith.CurrentFaith > 5)
+                    if (myCursor == Cursor.Cultify && Faith.CurrentFaith >= Faith.cultistCost)
                     {
                         Faith.CurrentFaith -= Faith.cultistCost;
                         hit.collider.gameObject.BroadcastMessage("OnClick", myCursor, SendMessageOptions.DontRequireReceiver);
                     }
-                    else if (myCursor == Cursor.Sacrifice && Faith.CurrentFaith > 10 && canSacrifice)
+                    else if (myCursor == Cursor.Sacrifice && Faith.CurrentFaith >= Faith.sacrificeCost && canSacrifice)
                     {
                         Faith.CurrentFaith -= Faith.sacrificeCost;
                         canSacrifice = false;
                         hit.collider.gameObject.BroadcastMessage("OnClick", myCursor, SendMessageOptions.DontRequireReceiver);
+                    }
+                }
+                else if (hit.collider.gameObject.name == "Terrain")
+                {
+                    if (myCursor == Cursor.Obelisk)
+                    {
+                        if (Faith.CurrentFaith >= Faith.obeliskCost)
+                        {
+                            Faith.CurrentFaith -= Faith.obeliskCost;
+                            Instantiate(ObeliskObj, hit.point, new Quaternion());
+                        }
                     }
                 }
             }

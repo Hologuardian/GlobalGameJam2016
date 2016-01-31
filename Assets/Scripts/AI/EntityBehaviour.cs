@@ -59,7 +59,7 @@ public class EntityBehaviour : MonoBehaviour
     private float updateElapsed;
     private static float updateGoal = 0.5f;
 
-    private static int Count;
+    public static int Count;
 
     private int daysAsChild;
 
@@ -202,10 +202,14 @@ public class EntityBehaviour : MonoBehaviour
             if (obj != null)
             {
                 // Increment faith goes here
-                //if (obj.GetComponent<ObeliskBehaviour>.isActive)
-                //{
-                Faith.CurrentFaith += (Faith.obeliskGain / Faith.obeliskTimer) * Time.deltaTime;
-                //}
+                ObeliskBehaviour ob = obj.transform.parent.GetComponent<ObeliskBehaviour>();
+                if (ob != null)
+                {
+                    if (ob.isActive)
+                    {
+                        Faith.CurrentFaith += (Faith.obeliskGain / Faith.obeliskTimer) * Time.deltaTime;
+                    }
+                }
             }
         }
 
@@ -802,7 +806,7 @@ public class EntityBehaviour : MonoBehaviour
 
     void OnClick(HUD.Cursor cursor)
     {
-        switch(cursor)
+        switch (cursor)
         {
             case HUD.Cursor.Cultify:
                 if (culty + 30 <= 100 && !isSacrificable)
