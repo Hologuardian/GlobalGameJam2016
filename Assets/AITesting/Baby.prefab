@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
-  isBaby: 0
+  isBaby: 1
   sex: 0
   gender: 
   role: Narmy
@@ -210,6 +210,8 @@ MonoBehaviour:
   isSacrificable: 0
   canBreed: 0
   navMe: {fileID: 19541674}
+  Baby: {fileID: 0}
+  Adult: {fileID: 157100, guid: e58679e40cd5b4940adba01e39563657, type: 2}
 --- !u!195 &19541674
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -236,7 +238,15 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: Adult
+      value: 
+      objectReference: {fileID: 157100, guid: e58679e40cd5b4940adba01e39563657, type: 2}
+    - target: {fileID: 0}
+      propertyPath: isBaby
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 159288}

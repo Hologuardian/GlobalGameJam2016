@@ -48,12 +48,20 @@ public class EntityBehaviour : MonoBehaviour
 
     [Header("Reproduction")]
     public GameObject Baby;
+    public GameObject Adult;
 
     private ArrayList sleepNodes;
     private ArrayList chaseNodes;
     private ArrayList chaseNodeWeights;
 
     private Node target;
+
+    private float updateElapsed;
+    private static float updateGoal = 0.5f;
+
+    private static int Count;
+
+    private int daysAsChild;
 
     private bool isDay;
 
@@ -103,21 +111,31 @@ public class EntityBehaviour : MonoBehaviour
         canBreed = true;
         isSacrificable = false;
 
-        AudioHandler.Instance.PlayVoiceOver(AudioHandler.VoiceOvers.WILHELMSCREAM);
+        ++Count;
     }
 
     // Update is called once per frame
     void Update()
     {
+        updateElapsed += Time.deltaTime;
+
         if (DayNightCycle.Cycle.dayElapsed > DayNightCycle.Cycle.dayStart && DayNightCycle.Cycle.dayElapsed < DayNightCycle.Cycle.dayLength)
         {
             if (!isDay)
             {
                 isDay = true;
                 SetTarget();
+
+                if (isBaby)
+                {
+                    ++daysAsChild;
+                    UpdateChild();
+                }
             }
             if (!isBaby)
+            {
                 UpdateDay();
+            }
         }
         else
         {
@@ -139,9 +157,16 @@ public class EntityBehaviour : MonoBehaviour
 
     void UpdateDay()
     {
+        if (updateElapsed < updateGoal)
+        {
+            return;
+        }
+
+        updateElapsed -= UnityEngine.Random.Range(updateGoal * 0.5f, updateGoal * 2f);
+
         // Node-stuff and cult things
         // Have a chance of becoming breed ready again
-        if (!canBreed && UnityEngine.Random.Range(0,9) == 0)
+        if (!canBreed && UnityEngine.Random.Range(0, 9) == 0)
         {
             canBreed = true;
         }
@@ -169,6 +194,13 @@ public class EntityBehaviour : MonoBehaviour
 
     void UpdateNight()
     {
+        if (updateElapsed < updateGoal)
+        {
+            return;
+        }
+
+        updateElapsed -= UnityEngine.Random.Range(updateGoal * 0.5f, updateGoal * 2f);
+
         // Breeding and sacrificing
 
         // Checking to see if you are flagged for sacrifice
@@ -188,8 +220,11 @@ public class EntityBehaviour : MonoBehaviour
                     // Handle the sacrifice shit.
                     ArrayList cultists = BehaviourUtil.SurroundingObjectsByTag(this.gameObject, "Entity", 20);
                     // Reward faith based on number of cultists present
-                    
+
                     AudioHandler.Instance.PlayVoiceOver(AudioHandler.VoiceOvers.WILHELMSCREAM);
+
+                    --Count;
+                    Destroy(this.gameObject);
                 }
             }
         }
@@ -207,33 +242,46 @@ public class EntityBehaviour : MonoBehaviour
             }
             else
             {
-                // Checking to see if opposite gender is close by (3-5) to breed
-                GameObject house = BehaviourUtil.NearestObjectByTag(this.gameObject, "House", 20);
-                if (house != null)
+                if (Count < 100)
                 {
-                    Debug.Log("I am in a house");
-                    ArrayList entities = BehaviourUtil.SurroundingObjectsByTag(this.gameObject, "Entity", 5);
-                    foreach (GameObject obj in entities)
+                    // Checking to see if opposite gender is close by (3-5) to breed
+                    GameObject house = BehaviourUtil.NearestObjectByTag(this.gameObject, "House", 20);
+                    if (house != null)
                     {
-                        EntityBehaviour ent = obj.GetComponent<EntityBehaviour>();
-                        if (ent.sex != sex)
+                        ArrayList entities = BehaviourUtil.SurroundingObjectsByTag(this.gameObject, "Entity", 5);
+                        if (entities != null)
                         {
-                            Debug.Log("I have a worthy partner");
-                            if (!sex)
+                            foreach (GameObject obj in entities)
                             {
-                                Debug.Log("I am strong capable independant female");
-                                if (canBreed)
+                                EntityBehaviour ent = obj.transform.parent.parent.GetComponent<EntityBehaviour>();
+                                if (ent.sex != sex)
                                 {
-                                    Debug.Log("I maked a babby");
-                                    // Make baby
-                                    canBreed = !canBreed;
-                                    Instantiate(Baby, transform.position, new Quaternion());
+                                    if (!sex)
+                                    {
+                                        if (canBreed && Baby != null)
+                                        {
+                                            // Make baby
+                                            canBreed = !canBreed;
+                                            Instantiate(Baby, transform.position, new Quaternion());
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
+        }
+    }
+
+    void UpdateChild()
+    {
+        if (daysAsChild >= 3)
+        {
+            Debug.Log("Grow up");
+            Instantiate(Adult, transform.position, new Quaternion());
+            --Count;
+            Destroy(this.gameObject);
         }
     }
 
@@ -726,5 +774,29 @@ public class EntityBehaviour : MonoBehaviour
 
         UpdateRole();
         SetAppearance();
+    }
+
+    void OnClick(HUD.Cursor cursor)
+    {
+        switch(cursor)
+        {
+            case HUD.Cursor.Cultify:
+                if (culty + 30 <= 100)
+                    culty += 30;
+                else
+                    HUD.Faith += 5;
+                break;
+            case HUD.Cursor.Sacrifice:
+                if (!isSacrificable)
+                    isSacrificable = true;
+                else
+                {
+                    HUD.Faith += 10;
+                    HUD.canSacrifice = true;
+                }
+                break;
+            default:
+                break;
+        }
     }
 }
