@@ -23,15 +23,8 @@ public class AudioHandler : MonoBehaviour
     public AudioClip m_ButtonThree;
     public AudioClip m_ButtonFour;
 
-    [Header("Male Screams")]
-    public AudioClip m_MaleScreamOne;
-    public AudioClip m_MaleScreamTwo;
-    public AudioClip m_MaleScreamThree;
-
-    [Header("Female Screams")]
-    public AudioClip m_FemaleScreamOne;
-    public AudioClip m_FemaleScreamTwo;
-    public AudioClip m_FemaleScreamThree;
+    [Header("WILHELM SCREAM")]
+    public AudioClip m_WilhelmScream;
 
     [Header("Voice Overs")]
     public AudioClip m_DemonicMumblingOne;
@@ -58,18 +51,9 @@ public class AudioHandler : MonoBehaviour
         SFXBUTTONFOUR
     }
 
-
-    //TODO: Get Microphone
-    //      Fill these enums out
-    //      Record voiceovers from Jam participants (?)
     public enum VoiceOvers
     {
-        MALESCREAMONE,
-        MALESCREAMTWO,
-        MALESCREAMTHREE,
-        FEMALESCREAMONE,
-        FEMALESCREAMTWO,
-        FEMALESCREAMTHREE,
+        WILHELMSCREAM,
         DEMONICMUMBLINGONE,
         DEMONICMUMBLINGTWO,
         DEMONICMUMBLETHREE,
@@ -200,28 +184,8 @@ public class AudioHandler : MonoBehaviour
                 m_SoundEffectSource.PlayOneShot(m_ShoggothFeast);
                 break;
 
-            case VoiceOvers.FEMALESCREAMONE:
-                m_SoundEffectSource.PlayOneShot(m_FemaleScreamOne);
-                break;
-
-            case VoiceOvers.FEMALESCREAMTWO:
-                m_SoundEffectSource.PlayOneShot(m_FemaleScreamTwo);
-                break;
-
-            case VoiceOvers.FEMALESCREAMTHREE:
-                m_SoundEffectSource.PlayOneShot(m_FemaleScreamThree);
-                break;
-
-            case VoiceOvers.MALESCREAMONE:
-                m_SoundEffectSource.PlayOneShot(m_MaleScreamOne);
-                break;
-
-            case VoiceOvers.MALESCREAMTWO:
-                m_SoundEffectSource.PlayOneShot(m_MaleScreamTwo);
-                break;
-
-            case VoiceOvers.MALESCREAMTHREE:
-                m_SoundEffectSource.PlayOneShot(m_MaleScreamThree);
+            case VoiceOvers.WILHELMSCREAM:
+                m_SoundEffectSource.PlayOneShot(m_WilhelmScream);
                 break;
 
             default:
@@ -229,4 +193,5 @@ public class AudioHandler : MonoBehaviour
                 break;
         }
     }
+
 }
