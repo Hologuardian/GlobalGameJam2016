@@ -9,8 +9,6 @@ public class HUD : MonoBehaviour
 
     public GameObject ObeliskObj;
 
-    public static int Faith;
-
     public static bool canSacrifice;
     private bool isDay;
 
@@ -18,7 +16,6 @@ public class HUD : MonoBehaviour
     void Start()
     {
         myCursor = Cursor.Select;
-        Faith = 1000;
         canSacrifice = true;
     }
 
@@ -36,14 +33,14 @@ public class HUD : MonoBehaviour
                 Physics.Raycast(ray, out hit);
                 if (hit.collider.gameObject.tag == "Entity")
                 {
-                    if (myCursor == Cursor.Cultify && Faith > 5)
+                    if (myCursor == Cursor.Cultify && Faith.CurrentFaith > 5)
                     {
-                        Faith -= 5;
+                        Faith.CurrentFaith -= Faith.cultistCost;
                         hit.collider.gameObject.BroadcastMessage("OnClick", myCursor, SendMessageOptions.DontRequireReceiver);
                     }
-                    else if (myCursor == Cursor.Sacrifice && Faith > 10 && canSacrifice)
+                    else if (myCursor == Cursor.Sacrifice && Faith.CurrentFaith > 10 && canSacrifice)
                     {
-                        Faith -= 10;
+                        Faith.CurrentFaith -= Faith.sacrificeCost;
                         canSacrifice = false;
                         hit.collider.gameObject.BroadcastMessage("OnClick", myCursor, SendMessageOptions.DontRequireReceiver);
                     }
@@ -51,26 +48,26 @@ public class HUD : MonoBehaviour
             }
             else
             {
-                if (Faith > 100 && isDay)
+                if (Faith.CurrentFaith > 100 && isDay)
                 {
-                    Faith -= 100;
+                    Faith.CurrentFaith -= Faith.obeliskCost;
                     DayNightCycle.Cycle.dayElapsed = DayNightCycle.Cycle.dayLength;
                 }
             }
         }
 
-        //if (DayNightCycle.Cycle.dayElapsed > DayNightCycle.Cycle.dayStart && DayNightCycle.Cycle.dayElapsed < DayNightCycle.Cycle.dayLength)
-        //{
-        //    if (!isDay)
-        //    {
-        //        isDay = true;
-        //        canSacrifice = true;
-        //    }
-        //}
-        //else
-        //{
-        //    isDay = false;
-        //}
+        if (DayNightCycle.Cycle.dayElapsed > DayNightCycle.Cycle.dayStart && DayNightCycle.Cycle.dayElapsed < DayNightCycle.Cycle.dayLength)
+        {
+            if (!isDay)
+            {
+                isDay = true;
+                canSacrifice = true;
+            }
+        }
+        else
+        {
+            isDay = false;
+        }
         // End of Aidan gross vomit stuff
     }
 

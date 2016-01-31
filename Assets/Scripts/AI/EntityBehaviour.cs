@@ -180,7 +180,7 @@ public class EntityBehaviour : MonoBehaviour
                 // Increment faith goes here
                 //if (obj.GetComponent<ObeliskBehaviour>.isActive)
                 //{
-                    Faith.faith += (Faith.obeliskGain / Faith.obeliskTimer) * Time.deltaTime;
+                Faith.CurrentFaith += (Faith.obeliskGain / Faith.obeliskTimer) * Time.deltaTime;
                 //}
             }
         }
@@ -217,21 +217,26 @@ public class EntityBehaviour : MonoBehaviour
                 role = "Virginy";
                 SetAppearance();
                 // Set Destination for sacrifice tablet
-                GameObject altar = GameObject.Find("Altar");// BehaviourUtil.NearestObjectByTag(this.gameObject, "Altar", 3000);
+                GameObject altar = GameObject.Find("Altar");
                 navMe.SetDestination(altar.transform.position);
-                Debug.Log(altar);
-                Debug.Log(navMe);
                 // If at sacrifice sacrific, and gain faiths!
-                if ((transform.position - altar.transform.position).magnitude <= 20)
+                Vector3 delta = transform.position - altar.transform.position;
+                Debug.Log(delta.magnitude);
+                if (delta.magnitude <= 20)
                 {
+                    Debug.Log("I want to sacrifice myself");
                     // Handle the sacrifice shit.
                     ArrayList cultists = BehaviourUtil.SurroundingObjectsByTag(this.gameObject, "Entity", 20);
                     // Reward faith based on number of cultists present
+                    if (cultists.Count > 0)
+                    {
+                        Faith.CurrentFaith += Faith.sacrificeGain * cultists.Count;
 
-                    AudioHandler.Instance.PlayVoiceOver(AudioHandler.VoiceOvers.WILHELMSCREAM);
+                        AudioHandler.Instance.PlayVoiceOver(AudioHandler.VoiceOvers.WILHELMSCREAM);
 
-                    --Count;
-                    Destroy(this.gameObject);
+                        --Count;
+                        Destroy(this.gameObject);
+                    }
                 }
             }
         }
@@ -795,14 +800,14 @@ public class EntityBehaviour : MonoBehaviour
         switch(cursor)
         {
             case HUD.Cursor.Cultify:
-                if (culty + 30 <= 100)
+                if (culty + 30 <= 100 && !isSacrificable)
                 {
                     culty += 30;
                     Debug.Log("I am being cultified: " + culty);
                 }
                 else
                 {
-                    HUD.Faith += 5;
+                    Faith.CurrentFaith += Faith.cultistCost;
                     Debug.Log("I am already culty: " + culty);
                 }
                 break;
@@ -814,7 +819,7 @@ public class EntityBehaviour : MonoBehaviour
                 }
                 else
                 {
-                    HUD.Faith += 10;
+                    Faith.CurrentFaith += Faith.sacrificeCost;
                     HUD.canSacrifice = true;
                     Debug.Log("I am already going to be sacrificed");
                 }

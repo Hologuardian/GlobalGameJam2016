@@ -40,7 +40,8 @@ public class MainCamera : MonoBehaviour
         ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
         Physics.Raycast(ray, out hit);
         Vector3 objHit = new Vector3(hit.point.x, terrain.SampleHeight(hit.point), hit.point.z);
-        Debug.Log(objHit + "" + zoom);
+        mainCamera.transform.eulerAngles = new Vector3(45, mainCamera.transform.eulerAngles.y, mainCamera.transform.eulerAngles.z);
+        //Debug.Log(objHit + "" + zoom);
         // Panning
         if (Input.GetKey(KeyCode.D))
         {
@@ -80,11 +81,13 @@ public class MainCamera : MonoBehaviour
         {
             mainCamera.transform.RotateAround(objHit, Vector3.up, -rotateSpeed);
             mainCamera.transform.LookAt(objHit);
+            mainCamera.transform.eulerAngles = new Vector3(45, mainCamera.transform.eulerAngles.y, mainCamera.transform.eulerAngles.z);
         }
         if (Input.GetKey(KeyCode.E))
         {
             mainCamera.transform.RotateAround(objHit, Vector3.up, rotateSpeed);
             mainCamera.transform.LookAt(objHit);
+            mainCamera.transform.eulerAngles = new Vector3(45, mainCamera.transform.eulerAngles.y, mainCamera.transform.eulerAngles.z);
             // transform.Rotate(new Vector3(0, rotateSpeed, 0));
             //transform.RotateAround(Vector3.up, rotateSpeed * Time.deltaTime);
         }
