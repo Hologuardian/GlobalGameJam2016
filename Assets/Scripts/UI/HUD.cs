@@ -4,16 +4,11 @@ using UnityEngine.UI;
 
 public class HUD : MonoBehaviour {
 
-    enum Cursor { Select, Cultify, Sacrifice, Obelisk, Day, Night};
+    enum Cursor { Select, Cultify, Sacrifice, Obelisk, Eclipse};
     Cursor myCursor;
-    bool day;
-    public Sprite dayImage, nightImage;
-    public Button dayNightButton;
-
 
 	// Use this for initialization
 	void Start () {
-        day = true;
         myCursor = Cursor.Select;
 	}
 	
@@ -47,20 +42,8 @@ public class HUD : MonoBehaviour {
     }
 
     void DayNight()
-    {   
-        if(day)
-        {
-            myCursor = Cursor.Day;
-            dayNightButton.GetComponent<Image>().sprite = nightImage;
-            day = false;
-        }
-        else
-        {
-            myCursor = Cursor.Night;
-            dayNightButton.GetComponent<Image>().sprite = dayImage;
-            day = true;
-        }
-
+    {
+        myCursor = Cursor.Eclipse;
         Debug.Log(myCursor);
     }
 
