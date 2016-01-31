@@ -35,6 +35,9 @@ public class EntityBehaviour : MonoBehaviour
     [Range(-100, 100)]
     public float wandery;
 
+    public bool isSacrificable;
+    public bool canBreed;
+
     public NavMeshAgent navMe;
 
     private ArrayList sleepNodes;
@@ -59,7 +62,7 @@ public class EntityBehaviour : MonoBehaviour
             if (!node.sleepyness)
             {
                 float weight = ((node.cultyness * culty) + (node.religyness * faithy) + (node.mournyness * mourny) + (node.farmyness * farmy) + (node.socialness * socialy) + (node.wanderyness * wandery)) / 6;
-                
+
                 if (weight > 0)
                 {
                     chaseNodes.Add(node);
@@ -70,6 +73,15 @@ public class EntityBehaviour : MonoBehaviour
             {
                 sleepNodes.Add(node);
             }
+        }
+
+        if (UnityEngine.Random.Range(0, 9) <= 4)
+        {
+            sex = true;
+        }
+        else
+        {
+            sex = false;
         }
 
         SetAppearance();
@@ -89,6 +101,7 @@ public class EntityBehaviour : MonoBehaviour
             {
                 isDay = true;
                 SetTarget();
+                UpdateDay();
             }
         }
         else
@@ -97,6 +110,7 @@ public class EntityBehaviour : MonoBehaviour
             {
                 isDay = false;
                 SetTarget();
+                UpdateNight();
             }
         }
 
@@ -107,6 +121,99 @@ public class EntityBehaviour : MonoBehaviour
         }
     }
 
+    void UpdateDay()
+    {
+        // Node-stuff and cult things
+        // Have a chance of becoming breed ready again
+        if (!canBreed && UnityEngine.Random.Range(0,9) == 0)
+        {
+            canBreed = true;
+        }
+
+        // Checking to see if culty and near obelisks
+        if (culty > 0)
+        {
+            if (BehaviourUtil.NearestObjectByTag(this.gameObject, "Obelisk", 10) != null)
+            {
+                // Increment faith goes here
+            }
+        }
+
+        // Checking to see if faithy and near obelisks
+        if (faithy > 0)
+        {
+            GameObject obelisk = BehaviourUtil.NearestObjectByTag(this.gameObject, "Obelisk", 10);
+            if (obelisk != null)
+            {
+                // Disable the obelisk
+                obelisk.BroadcastMessage("Disable");
+            }
+        }
+    }
+
+    void UpdateNight()
+    {
+        // Breeding and sacrificing
+
+        // Checking to see if you are flagged for sacrifice
+        if (isSacrificable)
+        {
+            GameObject house = BehaviourUtil.NearestObjectByTag(this.gameObject, "House", 10);
+            if (house != null)
+            {
+                role = "Virginy";
+                SetAppearance();
+                // Set Destination for sacrifice tablet
+                GameObject altar = BehaviourUtil.NearestObjectByTag(this.gameObject, "Altar", 1000);
+                navMe.SetDestination(altar.transform.position);
+                // If at sacrifice sacrific, and gain faiths!
+                if ((transform.position - altar.transform.position).magnitude <= 10)
+                {
+                    // Handle the sacrifice shit.
+                    ArrayList cultists = BehaviourUtil.SurroundingObjectsByTag(this.gameObject, "Entity", 20);
+                    // Reward faith based on number of cultists present
+                }
+            }
+        }
+        else
+        {
+            // Checking to see if you are culty to go do culty stuffs
+            if (culty > 0)
+            {
+                GameObject house = BehaviourUtil.NearestObjectByTag(this.gameObject, "House", 10);
+                if (house != null)
+                {
+                    GameObject altar = BehaviourUtil.NearestObjectByTag(this.gameObject, "Altar", 1000);
+                    navMe.SetDestination(altar.transform.position);
+                }
+            }
+            else
+            {
+                // Checking to see if opposite gender is close by (3-5) to breed
+                GameObject house = BehaviourUtil.NearestObjectByTag(this.gameObject, "House", 10);
+                if (house != null)
+                {
+                    ArrayList entities = BehaviourUtil.SurroundingObjectsByTag(this.gameObject, "Entity", 5);
+                    foreach (GameObject obj in entities)
+                    {
+                        EntityBehaviour ent = obj.GetComponent<EntityBehaviour>();
+                        if (ent.sex != sex)
+                        {
+                            if (!sex)
+                            {
+                                if (canBreed)
+                                {
+                                    // Make baby
+                                    canBreed = !canBreed;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     /// <summary>
     /// This sets the target the entity will chase, this should be called as infrequently as possible
     /// </summary>
@@ -114,47 +221,56 @@ public class EntityBehaviour : MonoBehaviour
     {
         if (isDay)
         {
-            // Keep a temp variable for the weight of the last assigned target
-            float weight = 0;
-            // Grab five random nodes
-            for (int i = 0; i < 5; ++i)
+            if (chaseNodes.Count > 0)
             {
-                int index = UnityEngine.Random.Range(0, chaseNodes.Count - 1);
-                Node node = (Node)chaseNodes[index];
-                // If the new node has a higher weight than the current target make the target the new node
-                if ((float)chaseNodeWeights[index] > weight)
+                // Keep a temp variable for the weight of the last assigned target
+                float weight = 0;
+                // Grab five random nodes
+                for (int i = 0; i < 5; ++i)
                 {
-                    target = node;
-                    weight = (float)chaseNodeWeights[index];
+                    int index = UnityEngine.Random.Range(0, chaseNodes.Count - 1);
+                    Node node = (Node)chaseNodes[index];
+                    // If the new node has a higher weight than the current target make the target the new node
+                    if ((float)chaseNodeWeights[index] > weight)
+                    {
+                        target = node;
+                        weight = (float)chaseNodeWeights[index];
+                    }
                 }
             }
         }
         else if (culty > 0)
         {
-            ArrayList nodes = new ArrayList();
-            ArrayList weights = new ArrayList();
-
-            // Go through all chaseNodes
-            for (int i = 0; i < chaseNodes.Count; ++i)
+            if (chaseNodes.Count > 0)
             {
-                // Keep only the ones that are culty
-                if (((Node)chaseNodes[i]).cultyness > 0)
+                ArrayList nodes = new ArrayList();
+                ArrayList weights = new ArrayList();
+
+                // Go through all chaseNodes
+                for (int i = 0; i < chaseNodes.Count; ++i)
                 {
-                    nodes.Add(chaseNodes[i]);
-                    weights.Add(chaseNodeWeights[i]);
+                    // Keep only the ones that are culty
+                    if (((Node)chaseNodes[i]).cultyness > 0)
+                    {
+                        nodes.Add(chaseNodes[i]);
+                        weights.Add(chaseNodeWeights[i]);
+                    }
                 }
-            }
 
-            // Then go through at most 5 of the culty ones and set the highest weighted one to be the target
-            float weight = 0;
-            for (int i = 0; i < Mathf.Min(5, nodes.Count); ++i)
-            {
-                int index = UnityEngine.Random.Range(0, nodes.Count - 1);
-                Node node = (Node)nodes[index];
-                if ((float)weights[index] > weight)
+                if (nodes.Count > 0)
                 {
-                    target = node;
-                    weight = (float)weights[index];
+                    // Then go through at most 5 of the culty ones and set the highest weighted one to be the target
+                    float weight = 0;
+                    for (int i = 0; i < Mathf.Min(5, nodes.Count); ++i)
+                    {
+                        int index = UnityEngine.Random.Range(0, nodes.Count - 1);
+                        Node node = (Node)nodes[index];
+                        if ((float)weights[index] > weight)
+                        {
+                            target = node;
+                            weight = (float)weights[index];
+                        }
+                    }
                 }
             }
         }
@@ -163,7 +279,8 @@ public class EntityBehaviour : MonoBehaviour
             target = (Node)sleepNodes[UnityEngine.Random.Range(0, sleepNodes.Count - 1)];
         }
 
-        navMe.SetDestination(target.transform.position);
+        if (target != null)
+            navMe.SetDestination(target.transform.position);
     }
 
     public void UpdateNodes()
@@ -189,9 +306,9 @@ public class EntityBehaviour : MonoBehaviour
         }
     }
 
-    void SetAppearance()
+    public void SetAppearance()
     {
-        switch(role)
+        switch (role)
         {
             case "Narmy":
                 if (sex)
@@ -516,46 +633,41 @@ public class EntityBehaviour : MonoBehaviour
         }
     }
 
-    void SetRole(string _role)
+    public void UpdateRole()
     {
-        role = _role;
-        SetAppearance();
-    }
-
-    void UpdateRole()
-    {
-        if (faithy > 50)
+        if (faithy >= 50)
         {
             role = "Faithy";
+            Debug.Log(role);
             // Faithy
         }
-        else if (culty > 75)
+        else if (culty >= 75)
         {
             role = "Really Culty";
             // Really Culty
         }
-        else if (culty > 50)
+        else if (culty >= 50)
         {
             role = "Mostly Culty";
+            Debug.Log(role);
             // Mostly Culty
         }
-        else if (culty > 25)
+        else if (culty >= 25)
         {
             role = "Kinda Culty";
             // Kinda Culty
         }
-
-        if (socialy > Mathf.Max(farmy, wandery) && socialy > 50)
+        else if (socialy > Mathf.Max(farmy, wandery) && socialy >= 50)
         {
             role = "Socialy";
             // Socially
         }
-        else if (farmy > Mathf.Max(socialy, wandery) && farmy > 50)
+        else if (farmy > Mathf.Max(socialy, wandery) && farmy >= 50)
         {
             role = "Farmy";
             // Farmy
         }
-        else if (wandery > Mathf.Max(farmy, socialy) && wandery > 50)
+        else if (wandery > Mathf.Max(farmy, socialy) && wandery >= 50)
         {
             role = "Wandery";
             // Wandery
@@ -566,7 +678,7 @@ public class EntityBehaviour : MonoBehaviour
             // Narmy
         }
 
-        Debug.Log(role);
+        SetAppearance();
     }
 
     void SetComponentVisibility(bool state, string name)
@@ -576,7 +688,6 @@ public class EntityBehaviour : MonoBehaviour
             if (comp.name == name)
             {
                 comp.component.GetComponent<Renderer>().enabled = state;
-                break;
             }
         }
     }
@@ -586,9 +697,9 @@ public class EntityBehaviour : MonoBehaviour
     /// </summary>
     public void CreateAsRandom()
     {
-        farmy = UnityEngine.Random.Range(-100, 100);
-        socialy = UnityEngine.Random.Range(-100, 100);
-        wandery = UnityEngine.Random.Range(-100, 100);
+        farmy = (UnityEngine.Random.Range(-100, 100) + UnityEngine.Random.Range(-100, 100)) / 2;
+        socialy = (UnityEngine.Random.Range(-100, 100) + UnityEngine.Random.Range(-100, 100)) / 2;
+        wandery = (UnityEngine.Random.Range(-100, 100) + UnityEngine.Random.Range(-100, 100)) / 2;
 
         UpdateRole();
         SetAppearance();

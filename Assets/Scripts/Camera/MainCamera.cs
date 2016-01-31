@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MainCamera : MonoBehaviour {
+public class MainCamera : MonoBehaviour
+{
 
     public float panSpeed = 100.0f;
     public float zoomSpeed = 30.0f;
@@ -12,14 +13,18 @@ public class MainCamera : MonoBehaviour {
     public Transform target;
     Vector3 translation;
 
-	// Use this for initialization
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    private Vector3 dragOrigin;
+
+    // Use this for initialization
+    void Start()
+    {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         // Panning
-	    if(Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
             transform.Translate(new Vector3(panSpeed * Time.deltaTime, 0, 0));
         }
@@ -35,21 +40,41 @@ public class MainCamera : MonoBehaviour {
         {
             transform.Translate(new Vector3(0, 0, -panSpeed * Time.deltaTime));
         }
-        if(Input.GetButtonDown("Fire2"))
+
+        if (Input.GetButtonDown("Fire1"))
         {
-            transform.position += new Vector3(Input.GetAxis("Mouse X") * dragSpeed * Time.deltaTime, Input.GetAxis("Mouse Y") * dragSpeed * Time.deltaTime, 0);
-                //-= new Vector3(Input.GetAxis("Mouse X") * DragSpeed * Time.deltaTime, 0,
-                           //    Input.GetAxis("Mouse Y") * DragSpeed * Time.deltaTime);
+            dragOrigin = Input.mousePosition;
+        }
+        if (Input.GetButton("Fire1"))
+        {
+            Vector3 pos = Camera.main.ScreenToViewportPoint(dragOrigin - Input.mousePosition);
+            Vector3 move = new Vector3(pos.x * dragSpeed, 0, pos.y * dragSpeed);
+
+            transform.Translate(move, Space.World);
         }
 
         // rotation
-        if(Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q))
         {
-            transform.RotateAround(Vector3.up, -rotateSpeed * Time.deltaTime);           
+            transform.Rotate(new Vector3(0, -rotateSpeed, 0));
+            //transform.RotateAround(Vector3.up, -rotateSpeed * Time.deltaTime);
         }
-        if(Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.E))
         {
-            transform.RotateAround(Vector3.up, rotateSpeed * Time.deltaTime);
+            transform.Rotate(new Vector3(0, rotateSpeed, 0));
+            //transform.RotateAround(Vector3.up, rotateSpeed * Time.deltaTime);
+        }
+
+        // rotation borked
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            transform.Rotate(new Vector3(mainCamera.transform.position.x, -rotateSpeed, mainCamera.transform.position.z));
+            //transform.RotateAround(Vector3.up, -rotateSpeed * Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.Alpha2))
+        {
+            transform.Rotate(new Vector3(mainCamera.transform.position.x, rotateSpeed, mainCamera.transform.position.y));
+            //transform.RotateAround(Vector3.up, rotateSpeed * Time.deltaTime);
         }
 
         // zoom
