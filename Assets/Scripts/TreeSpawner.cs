@@ -51,8 +51,8 @@ public class TreeSpawner : MonoBehaviour
             {
                 Vector2 rand = UnityEngine.Random.insideUnitCircle;
                 GameObject obj = Instantiate(tree, point, Quaternion.LookRotation(new Vector3(rand.x, 0, rand.y))) as GameObject;
-                float width = (UnityEngine.Random.value * 0.2f) + 0.9f;
-                obj.transform.localScale = new Vector3((UnityEngine.Random.value * 0.5f) + 0.75f, width, width);
+                float width = (UnityEngine.Random.value * 6.0f) + 3.5f;
+                obj.transform.localScale = new Vector3(width, width, width);
                 obj.transform.parent = transform;
             }
         }
