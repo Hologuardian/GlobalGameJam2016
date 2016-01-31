@@ -222,7 +222,7 @@ public class EntityBehaviour : MonoBehaviour
                 // If at sacrifice sacrific, and gain faiths!
                 Vector3 delta = transform.position - altar.transform.position;
                 Debug.Log(delta.magnitude);
-                if (delta.magnitude <= 20)
+                if (delta.magnitude <= 170) // Ideally 20, but 170 is the weirdness we are suffering through
                 {
                     Debug.Log("I want to sacrifice myself");
                     // Handle the sacrifice shit.
