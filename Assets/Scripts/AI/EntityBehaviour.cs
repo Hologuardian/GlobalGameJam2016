@@ -43,7 +43,7 @@ public class EntityBehaviour : MonoBehaviour
     public bool isSacrificable;
     public bool canBreed;
 
-    [Header("Navi")]
+    [Header("Navigation")]
     public NavMeshAgent navMe;
 
     [Header("Reproduction")]
@@ -60,6 +60,7 @@ public class EntityBehaviour : MonoBehaviour
     private static float updateGoal = 0.5f;
 
     public static int Count;
+    public static int Cultists;
 
     private int daysAsChild;
 
@@ -776,6 +777,17 @@ public class EntityBehaviour : MonoBehaviour
         SetAppearance();
         UpdateNodes();
         SetTarget();
+
+        EntityBehaviour[] entities = GameObject.FindObjectsOfType<EntityBehaviour>();
+
+        Cultists = 0;
+        foreach(EntityBehaviour entity in entities)
+        {
+            if (entity.role == "Kinda Culty" || entity.role == "Mostly Culty" || entity.role == "Really Culty")
+            {
+                ++Cultists;
+            }
+        }
     }
 
     void SetComponentVisibility(bool state, string name)

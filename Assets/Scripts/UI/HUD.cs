@@ -59,7 +59,7 @@ public class HUD : MonoBehaviour
             }
             else
             {
-                if (Faith.CurrentFaith > Faith.eclipseCost && isDay)
+                if (Faith.CurrentFaith >= Faith.eclipseCost && isDay)
                 {
                     Faith.CurrentFaith -= Faith.eclipseCost;
                     DayNightCycle.Cycle.dayElapsed = 0;

@@ -3,7 +3,7 @@ using System.Collections;
 
 public static class Faith
 {
-    private static float currentFaith = 500;
+    private static float currentFaith = 1000;
     public static float CurrentFaith 
     {
         get { return currentFaith; }
