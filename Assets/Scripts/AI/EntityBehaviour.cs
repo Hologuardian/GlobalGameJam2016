@@ -11,6 +11,8 @@ public class Component
 
 public class EntityBehaviour : MonoBehaviour
 {
+    public static NameManager nameManager;
+
     public string name;
     public bool sex;
     public string gender;
@@ -43,9 +45,6 @@ public class EntityBehaviour : MonoBehaviour
 
     private bool isDay;
 
-    private float goalTimer;
-    private float goalCondition = 10;
-
     // Use this for initialization
     void Start()
     {
@@ -74,18 +73,31 @@ public class EntityBehaviour : MonoBehaviour
         }
 
         SetAppearance();
+
+        if (!sex)
+            name = nameManager.names[UnityEngine.Random.Range(0, (nameManager.names.Length / 2) - 1)];
+        else
+            name = nameManager.names[UnityEngine.Random.Range((nameManager.names.Length / 2) - 1, nameManager.names.Length - 1)];
     }
 
     // Update is called once per frame
     void Update()
     {
-        goalTimer += Time.deltaTime;
-
-        if (goalTimer > goalCondition)
+        if (DayNightCycle.Cycle.dayElapsed > DayNightCycle.Cycle.dayStart && DayNightCycle.Cycle.dayElapsed < DayNightCycle.Cycle.dayLength)
         {
-            isDay = !isDay;
-            SetTarget();
-            goalTimer = 0;
+            if (!isDay)
+            {
+                isDay = true;
+                SetTarget();
+            }
+        }
+        else
+        {
+            if (isDay)
+            {
+                isDay = false;
+                SetTarget();
+            }
         }
 
         if (target == null)
