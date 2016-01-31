@@ -37,9 +37,10 @@ public class AudioHandler : MonoBehaviour
     public AudioClip m_DemonicMumblingOne;
     public AudioClip m_DemonicMumblingTwo;
     public AudioClip m_DemonicMumblingThree;
-    public AudioClip m_DemonicYell;
+    public AudioClip m_DemonicLaugh;
+    public AudioClip m_ShoggothFeast;
+    public AudioClip m_PriestVoice;
     public AudioClip m_CheerfulGreeting;
-    public AudioClip m_SadGreting;
     public AudioClip m_Grunt;
     public AudioClip m_Sigh;
 
@@ -73,8 +74,9 @@ public class AudioHandler : MonoBehaviour
         DEMONICMUMBLINGTWO,
         DEMONICMUMBLETHREE,
         DEMONICLAUGH,
+        SHOGGOTHFEAST,
+        PRIESTVOICE,
         CHEERFULGREETING,
-        SADGREETING,
         GRUNTS,
         SIGH
     }
@@ -162,36 +164,40 @@ public class AudioHandler : MonoBehaviour
 
         switch (voiceOvers)
         {
-            case VoiceOvers.DEMONICMUMBLINGONE:
 
+            case VoiceOvers.PRIESTVOICE:
+                m_SoundEffectSource.PlayOneShot(m_PriestVoice);
+                break;
+            case VoiceOvers.DEMONICMUMBLINGONE:
+                m_SoundEffectSource.PlayOneShot(m_DemonicMumblingOne);
                 break;
 
             case VoiceOvers.DEMONICMUMBLINGTWO:
-
+                m_SoundEffectSource.PlayOneShot(m_DemonicMumblingTwo);
                 break;
 
             case VoiceOvers.DEMONICMUMBLETHREE:
-
+                m_SoundEffectSource.PlayOneShot(m_DemonicMumblingThree);
                 break;
 
             case VoiceOvers.DEMONICLAUGH://(?),
-
+                m_SoundEffectSource.PlayOneShot(m_DemonicLaugh);
                 break;
 
             case VoiceOvers.CHEERFULGREETING:
-
-                break;
-
-            case VoiceOvers.SADGREETING:
-
+                m_SoundEffectSource.PlayOneShot(m_CheerfulGreeting);
                 break;
 
             case VoiceOvers.GRUNTS:
-
+                m_SoundEffectSource.PlayOneShot(m_Grunt);
                 break;
 
             case VoiceOvers.SIGH:
+                m_SoundEffectSource.PlayOneShot(m_Sigh);
+                break;
 
+            case VoiceOvers.SHOGGOTHFEAST:
+                m_SoundEffectSource.PlayOneShot(m_ShoggothFeast);
                 break;
 
             case VoiceOvers.FEMALESCREAMONE:
@@ -219,7 +225,7 @@ public class AudioHandler : MonoBehaviour
                 break;
 
             default:
-                Debug.Log("Does literally nothing");
+                Debug.Log("Plays nothing");
                 break;
         }
     }

@@ -85,6 +85,45 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &1275557913
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1275557915}
+  - 114: {fileID: 1275557914}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1275557914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1275557913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 810b6f4c3191eaf4fb14933172c9971f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1275557915
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1275557913}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.3405223, y: 3.1732562, z: 8.515801}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
 --- !u!1 &1821738919
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,15 +435,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BackgroundSource: {fileID: 0}
   m_SoundEffectSource: {fileID: 0}
-  m_Spoops: {fileID: 8300000, guid: 0b89f1f3d0ed79d478d627ec61619f6f, type: 3}
-  m_Tribal: {fileID: 8300000, guid: 639fbe3fcc20bf543a1ead8a9b73fbe8, type: 3}
+  m_BackGroundSpoops: {fileID: 8300000, guid: 0b89f1f3d0ed79d478d627ec61619f6f, type: 3}
+  m_BackGroundTribal: {fileID: 8300000, guid: 639fbe3fcc20bf543a1ead8a9b73fbe8, type: 3}
   m_ButtonOne: {fileID: 8300000, guid: fef789df687ac474f935270092040819, type: 3}
   m_ButtonTwo: {fileID: 8300000, guid: 0b9047309a13382488f065c4a9f15d56, type: 3}
   m_ButtonThree: {fileID: 8300000, guid: 4b7edda2f67685a46a6dbfd547b50ab1, type: 3}
   m_ButtonFour: {fileID: 8300000, guid: 018eb74d243454d4c947ce459c8f9509, type: 3}
-  m_MaleScreamOne: {fileID: 0}
+  m_MaleScreamOne: {fileID: 8300000, guid: 8e5a10c558761a847b783793ab05e02a, type: 3}
   m_MaleScreamTwo: {fileID: 0}
   m_MaleScreamThree: {fileID: 0}
   m_FemaleScreamOne: {fileID: 0}
   m_FemaleScreamTwo: {fileID: 0}
   m_FemaleScreamThree: {fileID: 0}
+  m_DemonicMumblingOne: {fileID: 8300000, guid: fd5008d5e6678d540a00d72de5dfa68f,
+    type: 3}
+  m_DemonicMumblingTwo: {fileID: 8300000, guid: 91e77513286711140b30b1594f0565e8,
+    type: 3}
+  m_DemonicMumblingThree: {fileID: 8300000, guid: 63a5dd3145e968a46b6951ef23730a92,
+    type: 3}
+  m_DemonicLaugh: {fileID: 0}
+  m_ShoggothFeast: {fileID: 8300000, guid: fd12a099cdd5e7546a8f20272d0de589, type: 3}
+  m_PriestVoice: {fileID: 8300000, guid: 8ada144cb0034f549803269bde835c9b, type: 3}
+  m_CheerfulGreeting: {fileID: 8300000, guid: a10c581b1b5ff344e9e4fe16b17ba07e, type: 3}
+  m_Grunt: {fileID: 8300000, guid: 09a41b30deda4974c8cf10c6fc9afed4, type: 3}
+  m_Sigh: {fileID: 8300000, guid: 8a7c31b883608564da061f41a8610cee, type: 3}
