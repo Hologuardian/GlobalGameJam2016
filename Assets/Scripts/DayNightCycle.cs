@@ -28,6 +28,8 @@ public class DayNightCycle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Cycle == null)
+            Cycle = this;
         updateElapsed += Time.deltaTime;
         dayElapsed += Time.deltaTime;
 

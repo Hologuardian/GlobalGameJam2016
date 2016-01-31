@@ -1294,6 +1294,7 @@ MonoBehaviour:
   verticalOffset: 21
   spawnNumber: 5000
   determ: 0.8
+  SampleVal: 0
 --- !u!4 &778028944
 Transform:
   m_ObjectHideFlags: 0
@@ -1319,9 +1320,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tree: {fileID: 128590, guid: 0f130ed2f396caf4a8e0820b54d4a194, type: 2}
   terrain: {fileID: 542689527}
-  verticalOffset: 17
+  verticalOffset: 18.2
   spawnNumber: 10000
   determ: 0.1
+  SampleVal: 0
 --- !u!114 &778028946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1338,6 +1340,7 @@ MonoBehaviour:
   verticalOffset: 17
   spawnNumber: 5000
   determ: 0.8
+  SampleVal: 0
 --- !u!4 &789687303 stripped
 Transform:
   m_PrefabParentObject: {fileID: 437350, guid: e7baf8eb960018a49a18edc289399c86, type: 2}
