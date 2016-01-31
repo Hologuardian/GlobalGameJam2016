@@ -65,6 +65,7 @@ public class EntityBehaviour : MonoBehaviour
 
     private bool isDay;
 
+    private GameObject altar;
     // Use this for initialization
     void Start()
     {
@@ -146,6 +147,29 @@ public class EntityBehaviour : MonoBehaviour
             }
             if (!isBaby)
                 UpdateNight();
+
+            if (isSacrificable)
+            {
+                // If at sacrifice sacrific, and gain faiths!
+                Vector3 delta = transform.position - altar.transform.position;
+                Debug.Log(delta.magnitude);
+                if (delta.magnitude <= 20) // Ideally 20, but 170 is the weirdness we are suffering through
+                {
+                    Debug.Log("I want to sacrifice myself");
+                    // Handle the sacrifice shit.
+                    ArrayList cultists = BehaviourUtil.SurroundingObjectsByTag(this.gameObject, "Entity", 20);
+                    // Reward faith based on number of cultists present
+                    if (cultists.Count > 0)
+                    {
+                        Faith.CurrentFaith += Faith.sacrificeGain * cultists.Count;
+
+                        AudioHandler.Instance.PlayVoiceOver(AudioHandler.VoiceOvers.WILHELMSCREAM);
+
+                        --Count;
+                        Destroy(this.gameObject);
+                    }
+                }
+            }
         }
 
         if (target == null)
@@ -217,27 +241,8 @@ public class EntityBehaviour : MonoBehaviour
                 role = "Virginy";
                 SetAppearance();
                 // Set Destination for sacrifice tablet
-                GameObject altar = GameObject.Find("Altar");
+                altar = GameObject.Find("Altar");
                 navMe.SetDestination(altar.transform.position);
-                // If at sacrifice sacrific, and gain faiths!
-                Vector3 delta = transform.position - altar.transform.position;
-                Debug.Log(delta.magnitude);
-                if (delta.magnitude <= 170) // Ideally 20, but 170 is the weirdness we are suffering through
-                {
-                    Debug.Log("I want to sacrifice myself");
-                    // Handle the sacrifice shit.
-                    ArrayList cultists = BehaviourUtil.SurroundingObjectsByTag(this.gameObject, "Entity", 20);
-                    // Reward faith based on number of cultists present
-                    if (cultists.Count > 0)
-                    {
-                        Faith.CurrentFaith += Faith.sacrificeGain * cultists.Count;
-
-                        AudioHandler.Instance.PlayVoiceOver(AudioHandler.VoiceOvers.WILHELMSCREAM);
-
-                        --Count;
-                        Destroy(this.gameObject);
-                    }
-                }
             }
         }
         else
