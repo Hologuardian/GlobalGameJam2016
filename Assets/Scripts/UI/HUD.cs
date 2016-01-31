@@ -59,10 +59,10 @@ public class HUD : MonoBehaviour
             }
             else
             {
-                if (Faith.CurrentFaith > 100 && isDay)
+                if (Faith.CurrentFaith > Faith.eclipseCost && isDay)
                 {
-                    Faith.CurrentFaith -= Faith.obeliskCost;
-                    DayNightCycle.Cycle.dayElapsed = DayNightCycle.Cycle.dayLength;
+                    Faith.CurrentFaith -= Faith.eclipseCost;
+                    DayNightCycle.Cycle.dayElapsed = 0;
                 }
             }
         }
