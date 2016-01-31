@@ -24,7 +24,7 @@ public class TreeSpawner : MonoBehaviour {
                 Vector2 rand = Random.insideUnitCircle;
                 GameObject obj = Instantiate(tree, point, Quaternion.LookRotation(new Vector3(rand.x, 0, rand.y))) as GameObject;
                 obj.transform.localScale = new Vector3((Random.value * 0.5f) + 0.75f, (Random.value * 0.2f) + 0.9f, (Random.value * 0.2f) + 0.9f);
-
+                obj.transform.parent = transform;
             }
         }
 	}
