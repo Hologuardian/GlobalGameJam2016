@@ -17,6 +17,8 @@ ModelImporter:
     3300002: Sphere002
     4300000: Sphere001
     4300002: Sphere002
+    6400000: Sphere001
+    6400002: Sphere002
   materials:
     importMaterials: 1
     materialName: 0
@@ -43,7 +45,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

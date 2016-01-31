@@ -14,6 +14,7 @@ public class EntityBehaviour : MonoBehaviour
     public static NameManager nameManager;
 
     public string name;
+    public bool isBaby;
     public bool sex;
     public string gender;
 
@@ -39,6 +40,8 @@ public class EntityBehaviour : MonoBehaviour
     public bool canBreed;
 
     public NavMeshAgent navMe;
+
+    public GameObject Baby;
 
     private ArrayList sleepNodes;
     private ArrayList chaseNodes;
@@ -90,6 +93,9 @@ public class EntityBehaviour : MonoBehaviour
             name = nameManager.names[UnityEngine.Random.Range(0, (nameManager.names.Length / 2) - 1)];
         else
             name = nameManager.names[UnityEngine.Random.Range((nameManager.names.Length / 2) - 1, nameManager.names.Length - 1)];
+
+        canBreed = true;
+        isSacrificable = false;
     }
 
     // Update is called once per frame
@@ -101,8 +107,9 @@ public class EntityBehaviour : MonoBehaviour
             {
                 isDay = true;
                 SetTarget();
-                UpdateDay();
             }
+            if (!isBaby)
+                UpdateDay();
         }
         else
         {
@@ -110,8 +117,9 @@ public class EntityBehaviour : MonoBehaviour
             {
                 isDay = false;
                 SetTarget();
-                UpdateNight();
             }
+            if (!isBaby)
+                UpdateNight();
         }
 
         if (target == null)
@@ -190,21 +198,26 @@ public class EntityBehaviour : MonoBehaviour
             else
             {
                 // Checking to see if opposite gender is close by (3-5) to breed
-                GameObject house = BehaviourUtil.NearestObjectByTag(this.gameObject, "House", 10);
+                GameObject house = BehaviourUtil.NearestObjectByTag(this.gameObject, "House", 20);
                 if (house != null)
                 {
+                    Debug.Log("I am in a house");
                     ArrayList entities = BehaviourUtil.SurroundingObjectsByTag(this.gameObject, "Entity", 5);
                     foreach (GameObject obj in entities)
                     {
                         EntityBehaviour ent = obj.GetComponent<EntityBehaviour>();
                         if (ent.sex != sex)
                         {
+                            Debug.Log("I have a worthy partner");
                             if (!sex)
                             {
+                                Debug.Log("I am strong capable independant female");
                                 if (canBreed)
                                 {
+                                    Debug.Log("I maked a babby");
                                     // Make baby
                                     canBreed = !canBreed;
+                                    Instantiate(Baby, transform.position, new Quaternion());
                                 }
                             }
                         }

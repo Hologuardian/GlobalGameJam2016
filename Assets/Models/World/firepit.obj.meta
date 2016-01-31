@@ -67,6 +67,18 @@ ModelImporter:
     4300018: Sphere013
     4300020: Sphere014
     4300022: Sphere015
+    6400000: Cylinder001
+    6400002: Cylinder002
+    6400004: Cylinder003
+    6400006: Cylinder004
+    6400008: Sphere001
+    6400010: Sphere009
+    6400012: Sphere010
+    6400014: Sphere011
+    6400016: Sphere012
+    6400018: Sphere013
+    6400020: Sphere014
+    6400022: Sphere015
   materials:
     importMaterials: 1
     materialName: 0
@@ -93,7 +105,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
