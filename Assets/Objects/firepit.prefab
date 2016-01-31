@@ -346,8 +346,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 174290}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1624.1, y: 4.6149063, z: 636.8}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 400626}
   - {fileID: 452070}
@@ -409,7 +409,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 29981abc273f0a34f9ee5971d004f761, type: 2}
+  - {fileID: 2100000, guid: 8ee4439fadc13f84487063625602c00b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -435,7 +435,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 96c4b52379399e64cb242cfaa3a3683f, type: 2}
+  - {fileID: 2100000, guid: 8ee4439fadc13f84487063625602c00b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -461,7 +461,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 8a04df9fc4aa02e4fb98473e36d0487e, type: 2}
+  - {fileID: 2100000, guid: 8ee4439fadc13f84487063625602c00b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -487,7 +487,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: c70dc41b7354e29479b4add98351f5b3, type: 2}
+  - {fileID: 2100000, guid: 8ee4439fadc13f84487063625602c00b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -513,7 +513,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 860a65b95b241e94cac8ace5e59e80ce, type: 2}
+  - {fileID: 2100000, guid: b7d5f7a47e4328a42880d2543e6b0af4, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -539,7 +539,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 43f70aa443306fb46a7ed7a4dec68ff7, type: 2}
+  - {fileID: 2100000, guid: b7d5f7a47e4328a42880d2543e6b0af4, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -565,7 +565,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: c894e9f7a6c62404cb1c2f0146a35fde, type: 2}
+  - {fileID: 2100000, guid: b7d5f7a47e4328a42880d2543e6b0af4, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -591,7 +591,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 3cf7a966b627f1048bfdaf424fefb3ba, type: 2}
+  - {fileID: 2100000, guid: 8ee4439fadc13f84487063625602c00b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -617,7 +617,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 74de6767311d52249a50960585e1fb25, type: 2}
+  - {fileID: 2100000, guid: 8ee4439fadc13f84487063625602c00b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -643,7 +643,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: e733cad36c1442a41ac555298d872d71, type: 2}
+  - {fileID: 2100000, guid: 8ee4439fadc13f84487063625602c00b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -669,7 +669,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 6e43b9eb4fbc57c489febf17d0140390, type: 2}
+  - {fileID: 2100000, guid: b7d5f7a47e4328a42880d2543e6b0af4, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -695,10 +695,10 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 57b5c6f94f9fa1b47b9959ba90cc3778, type: 2}
+  - {fileID: 2100000, guid: 8ee4439fadc13f84487063625602c00b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
+  m_UseLightProbes: 0
   m_ReflectionProbeUsage: 1
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
