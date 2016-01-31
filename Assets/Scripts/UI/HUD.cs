@@ -19,6 +19,7 @@ public class HUD : MonoBehaviour
     {
         myCursor = Cursor.Select;
         Faith = 1000;
+        canSacrifice = true;
     }
 
     // Update is called once per frame
@@ -39,14 +40,12 @@ public class HUD : MonoBehaviour
                     {
                         Faith -= 5;
                         hit.collider.gameObject.BroadcastMessage("OnClick", myCursor, SendMessageOptions.DontRequireReceiver);
-                        Debug.Log("Cultified an entity");
                     }
                     else if (myCursor == Cursor.Sacrifice && Faith > 10 && canSacrifice)
                     {
                         Faith -= 10;
                         canSacrifice = false;
                         hit.collider.gameObject.BroadcastMessage("OnClick", myCursor, SendMessageOptions.DontRequireReceiver);
-                        Debug.Log("Sacrificed an entity");
                     }
                 }
             }
@@ -60,18 +59,18 @@ public class HUD : MonoBehaviour
             }
         }
 
-        if (DayNightCycle.Cycle.dayElapsed > DayNightCycle.Cycle.dayStart && DayNightCycle.Cycle.dayElapsed < DayNightCycle.Cycle.dayLength)
-        {
-            if (!isDay)
-            {
-                isDay = true;
-                canSacrifice = true;
-            }
-        }
-        else
-        {
-            isDay = false;
-        }
+        //if (DayNightCycle.Cycle.dayElapsed > DayNightCycle.Cycle.dayStart && DayNightCycle.Cycle.dayElapsed < DayNightCycle.Cycle.dayLength)
+        //{
+        //    if (!isDay)
+        //    {
+        //        isDay = true;
+        //        canSacrifice = true;
+        //    }
+        //}
+        //else
+        //{
+        //    isDay = false;
+        //}
         // End of Aidan gross vomit stuff
     }
 

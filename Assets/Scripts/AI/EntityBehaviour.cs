@@ -174,9 +174,14 @@ public class EntityBehaviour : MonoBehaviour
         // Checking to see if culty and near obelisks
         if (culty > 0)
         {
-            if (BehaviourUtil.NearestObjectByTag(this.gameObject, "Obelisk", 10) != null)
+            GameObject obj = BehaviourUtil.NearestObjectByTag(this.gameObject, "Obelisk", 10);
+            if (obj != null)
             {
                 // Increment faith goes here
+                //if (obj.GetComponent<ObeliskBehaviour>.isActive)
+                //{
+                    Faith.faith += (Faith.obeliskGain / Faith.obeliskTimer) * Time.deltaTime;
+                //}
             }
         }
 
@@ -212,10 +217,12 @@ public class EntityBehaviour : MonoBehaviour
                 role = "Virginy";
                 SetAppearance();
                 // Set Destination for sacrifice tablet
-                GameObject altar = BehaviourUtil.NearestObjectByTag(this.gameObject, "Altar", 1000);
+                GameObject altar = GameObject.Find("Altar");// BehaviourUtil.NearestObjectByTag(this.gameObject, "Altar", 3000);
                 navMe.SetDestination(altar.transform.position);
+                Debug.Log(altar);
+                Debug.Log(navMe);
                 // If at sacrifice sacrific, and gain faiths!
-                if ((transform.position - altar.transform.position).magnitude <= 10)
+                if ((transform.position - altar.transform.position).magnitude <= 20)
                 {
                     // Handle the sacrifice shit.
                     ArrayList cultists = BehaviourUtil.SurroundingObjectsByTag(this.gameObject, "Entity", 20);
@@ -236,7 +243,7 @@ public class EntityBehaviour : MonoBehaviour
                 GameObject house = BehaviourUtil.NearestObjectByTag(this.gameObject, "House", 10);
                 if (house != null)
                 {
-                    GameObject altar = BehaviourUtil.NearestObjectByTag(this.gameObject, "Altar", 1000);
+                    GameObject altar = GameObject.Find("Altar");
                     navMe.SetDestination(altar.transform.position);
                 }
             }
@@ -245,7 +252,7 @@ public class EntityBehaviour : MonoBehaviour
                 if (Count < 100)
                 {
                     // Checking to see if opposite gender is close by (3-5) to breed
-                    GameObject house = BehaviourUtil.NearestObjectByTag(this.gameObject, "House", 20);
+                    GameObject house = BehaviourUtil.NearestObjectByTag(this.gameObject, "House", 10);
                     if (house != null)
                     {
                         ArrayList entities = BehaviourUtil.SurroundingObjectsByTag(this.gameObject, "Entity", 5);
@@ -253,16 +260,19 @@ public class EntityBehaviour : MonoBehaviour
                         {
                             foreach (GameObject obj in entities)
                             {
-                                EntityBehaviour ent = obj.transform.parent.parent.GetComponent<EntityBehaviour>();
-                                if (ent.sex != sex)
+                                EntityBehaviour ent = obj.GetComponent<EntityBehaviour>();
+                                if (ent != null)
                                 {
-                                    if (!sex)
+                                    if (ent.sex != sex)
                                     {
-                                        if (canBreed && Baby != null)
+                                        if (!sex)
                                         {
-                                            // Make baby
-                                            canBreed = !canBreed;
-                                            Instantiate(Baby, transform.position, new Quaternion());
+                                            if (canBreed && Baby != null)
+                                            {
+                                                // Make baby
+                                                canBreed = !canBreed;
+                                                Instantiate(Baby, transform.position, new Quaternion());
+                                            }
                                         }
                                     }
                                 }
@@ -750,6 +760,8 @@ public class EntityBehaviour : MonoBehaviour
         }
 
         SetAppearance();
+        UpdateNodes();
+        SetTarget();
     }
 
     void SetComponentVisibility(bool state, string name)
@@ -774,6 +786,8 @@ public class EntityBehaviour : MonoBehaviour
 
         UpdateRole();
         SetAppearance();
+        UpdateNodes();
+        SetTarget();
     }
 
     void OnClick(HUD.Cursor cursor)
@@ -782,21 +796,36 @@ public class EntityBehaviour : MonoBehaviour
         {
             case HUD.Cursor.Cultify:
                 if (culty + 30 <= 100)
+                {
                     culty += 30;
+                    Debug.Log("I am being cultified: " + culty);
+                }
                 else
+                {
                     HUD.Faith += 5;
+                    Debug.Log("I am already culty: " + culty);
+                }
                 break;
             case HUD.Cursor.Sacrifice:
-                if (!isSacrificable)
+                if (!isSacrificable && culty <= 0 && faithy <= 25)
+                {
                     isSacrificable = true;
+                    Debug.Log("I am ready to be sacrificed");
+                }
                 else
                 {
                     HUD.Faith += 10;
                     HUD.canSacrifice = true;
+                    Debug.Log("I am already going to be sacrificed");
                 }
                 break;
             default:
                 break;
         }
+
+        UpdateRole();
+        SetAppearance();
+        UpdateNodes();
+        SetTarget();
     }
 }
