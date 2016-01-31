@@ -13,6 +13,7 @@ public class EntityBehaviour : MonoBehaviour
 {
     public static NameManager nameManager;
 
+    [Header("Basics")]
     public string name;
     public bool isBaby;
     public bool sex;
@@ -20,9 +21,11 @@ public class EntityBehaviour : MonoBehaviour
 
     public string role = "Narmy";
 
+    [Header("Render Stuff")]
     public GameObject character;
     public Component[] components;
 
+    [Header("Attributes")]
     [Range(-100, 100)]
     public float culty;
     [Range(-100, 100)]
@@ -36,11 +39,14 @@ public class EntityBehaviour : MonoBehaviour
     [Range(-100, 100)]
     public float wandery;
 
+    [Header("Conditionals")]
     public bool isSacrificable;
     public bool canBreed;
 
+    [Header("Navi")]
     public NavMeshAgent navMe;
 
+    [Header("Reproduction")]
     public GameObject Baby;
 
     private ArrayList sleepNodes;
@@ -96,6 +102,8 @@ public class EntityBehaviour : MonoBehaviour
 
         canBreed = true;
         isSacrificable = false;
+
+        AudioHandler.Instance.PlayVoiceOver(AudioHandler.VoiceOvers.WILHELMSCREAM);
     }
 
     // Update is called once per frame
@@ -180,6 +188,8 @@ public class EntityBehaviour : MonoBehaviour
                     // Handle the sacrifice shit.
                     ArrayList cultists = BehaviourUtil.SurroundingObjectsByTag(this.gameObject, "Entity", 20);
                     // Reward faith based on number of cultists present
+                    
+                    AudioHandler.Instance.PlayVoiceOver(AudioHandler.VoiceOvers.WILHELMSCREAM);
                 }
             }
         }

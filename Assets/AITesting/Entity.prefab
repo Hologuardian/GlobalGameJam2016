@@ -165,7 +165,7 @@ GameObject:
   - 195: {fileID: 19505160}
   m_Layer: 0
   m_Name: Entity
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1014,6 +1014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
+  isBaby: 0
   sex: 1
   gender: 
   role: Narmy
@@ -1047,7 +1048,10 @@ MonoBehaviour:
   farmy: 0
   socialy: 0
   wandery: 0
+  isSacrificable: 0
+  canBreed: 0
   navMe: {fileID: 19505160}
+  Baby: {fileID: 159288, guid: a328414b89b3f8d44a5bff7756f41ece, type: 2}
 --- !u!195 &19505160
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -1055,7 +1059,7 @@ NavMeshAgent:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157100}
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 2
   m_Speed: 7
   m_Acceleration: 8
   avoidancePriority: 50
@@ -1074,7 +1078,19 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Radius
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Entity
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Baby
+      value: 
+      objectReference: {fileID: 159288, guid: a328414b89b3f8d44a5bff7756f41ece, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 157100}
