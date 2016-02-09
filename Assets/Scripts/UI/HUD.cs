@@ -44,6 +44,10 @@ public class HUD : MonoBehaviour
                         canSacrifice = false;
                         hit.collider.gameObject.BroadcastMessage("OnClick", myCursor, SendMessageOptions.DontRequireReceiver);
                     }
+                    else if (myCursor == Cursor.Select)
+                    {
+                        hit.collider.gameObject.BroadcastMessage("OnClick", myCursor, SendMessageOptions.DontRequireReceiver);
+                    }
                 }
                 else if (hit.collider.gameObject.name == "Terrain")
                 {

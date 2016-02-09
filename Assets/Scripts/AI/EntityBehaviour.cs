@@ -11,6 +11,8 @@ public class Component
 
 public class EntityBehaviour : MonoBehaviour
 {
+    public HUD hud;
+
     public static NameManager nameManager;
 
     [Header("Basics")]
